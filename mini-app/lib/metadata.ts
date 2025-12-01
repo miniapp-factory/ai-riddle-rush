@@ -1,3 +1,3 @@
-export const title = "Mini App Factory App";
-export const description = "This app was created by the Mini App Factory!";
+export const title = "AI Riddle Rush";
+export const description = "Test your wits with AI-generated riddles in a fast-paced game!";
 export const url = process.env.NEXT_PUBLIC_URL;
