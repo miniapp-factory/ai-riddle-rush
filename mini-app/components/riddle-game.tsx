@@ -30,6 +30,7 @@ const builtInRiddles: Riddle[] = [
     answer: "fire",
   },
 ];
+const usedIndices = new Set<number>();
 
 const difficulties = ["Easy", "Medium", "Hard"] as const;
 type Difficulty = typeof difficulties[number];
@@ -189,7 +190,15 @@ export default function RiddleGame() {
 async function generateRiddle(difficulty: Difficulty): Promise<Riddle> {
   return new Promise((resolve) => {
     setTimeout(() => {
-      const riddle = builtInRiddles[Math.floor(Math.random() * builtInRiddles.length)];
+      if (usedIndices.size === builtInRiddles.length) {
+        usedIndices.clear();
+      }
+      let idx: number;
+      do {
+        idx = Math.floor(Math.random() * builtInRiddles.length);
+      } while (usedIndices.has(idx));
+      usedIndices.add(idx);
+      const riddle = builtInRiddles[idx];
       resolve(riddle);
     }, 500);
   });
